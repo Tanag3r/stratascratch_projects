@@ -152,7 +152,7 @@ def cleanFeatures_remove_outliers(historical_data:pd.DataFrame) -> pd.DataFrame:
 
 ## Run all functions
 
-historical_data = pd.read_csv(r'C:\Users\lukew\stratascratch_projects\stratascratch_projects\doordash_delivery_est\historical_data.csv')
+historical_data = pd.read_csv(r'~\historical_data.csv')
 
 store_id_unique = historical_data["store_id"].unique().tolist()
 store_id_and_category = {store_id: historical_data[historical_data.store_id == store_id].store_primary_category.mode() 
@@ -205,4 +205,4 @@ train_df = train_df.astype("float32")
 
 train_df['latest_update'] = dt.today()
 
-train_df.to_csv(path_or_buf=r"C:\Users\lukew\stratascratch_projects\stratascratch_projects\doordash_delivery_est\train_df.csv")
+train_df.to_csv(path_or_buf=r"~\train_df.csv")
