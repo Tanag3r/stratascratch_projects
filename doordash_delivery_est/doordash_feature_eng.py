@@ -2,6 +2,8 @@
 
 import pandas as pd
 import numpy as np
+from datetime import datetime as dt
+from datetime import timedelta
 
 ## update types
 ## create target variable
@@ -150,7 +152,7 @@ def cleanFeatures_remove_outliers(historical_data:pd.DataFrame) -> pd.DataFrame:
 
 ## Run all functions
 
-historical_data = pd.read_csv('historical_data.csv')
+historical_data = pd.read_csv(r'C:\Users\lukew\stratascratch_projects\stratascratch_projects\doordash_delivery_est\historical_data.csv')
 
 store_id_unique = historical_data["store_id"].unique().tolist()
 store_id_and_category = {store_id: historical_data[historical_data.store_id == store_id].store_primary_category.mode() 
@@ -177,6 +179,7 @@ train_df = pd.merge(
     how='inner',
     on='store_id'
 )
+## the category_prep_stats features do not make signficant contributions to models, so the table is dropped
 # train_df = pd.merge(
 #    left=train_df,
 #    right=category_prep_stats_df.reset_index(),
@@ -200,4 +203,6 @@ train_df.drop(columns=['store_primary_category','created_at','actual_delivery_ti
 train_df.dropna(inplace=True)
 train_df = train_df.astype("float32")
 
-train_df.to_csv(path_or_buf='train_df.csv')
+train_df['latest_update'] = dt.today()
+
+train_df.to_csv(path_or_buf=r"C:\Users\lukew\stratascratch_projects\stratascratch_projects\doordash_delivery_est\train_df.csv")
