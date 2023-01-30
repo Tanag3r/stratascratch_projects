@@ -1,2 +1,2 @@
 # stratascratch_projects
-Contains stratascratch data project notebooks
+Prompt and dataset is from stratascratch.com, solution notebook & feature engineering scripts are my own work. 
