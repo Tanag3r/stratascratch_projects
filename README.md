@@ -42,37 +42,31 @@ Top fifteen features by importance for the two-step (prep. time pred >>> deliver
 
 | Feature     | Score       |
 | ----------- | ----------- |
-| pred_order_prep_time      | 0.139058       |
-| created_hour_of_day__22	   | 0.048176        |
-| est_time_non-prep      | 0.036919       |
-| total_busy_dashers	   | 0.032640        |
-| estimated_order_place_duration      | 0.031526       |
-| clean_store_primary_category__mediterranean	   | 0.030337        |
-| total_onshift_dashers      | 0.023403       |
-| onshift_to_outstanding	   | 0.021803        |
-| clean_store_primary_category__japanese      | 0.017603       |
-| market_id__6.0	   | 0.016424        |
-| clean_store_primary_category__sushi	   | 0.012465        |
-| market_hour_busy_outs_avg      | 0.011942       |
-| created_hour_of_day__20	   | 0.010390       |
-| store_est_time_prep_per_item_mean      | 0.010385       |
-| hour_busy_outs_avg	   | 0.000858        |
-| hour_onshift_outs_avg      | 0.009867       |
+| pred_order_prep_time      | 0.314096       |
+| est_time_non-prep	   | 0.050941        |
+| estimated_store_to_consumer_driving_duration     | 0.022149       |
+| market_id__4.0	   | 0.012894        |
+| onshift_to_outstanding      | 0.012503       |
+| clean_store_primary_category__dessert	   | 0.011970        |
+| total_items      | 0.010003       |
+| hour_mean_total_onshift_dashers	   | 0.009541        |
+| estimated_order_place_duration      | 0.009181       |
+| clean_store_primary_category__american	   | 0.008342        |
 
 For comparison, these are the top ten features for a single model approach:
 
 | Feature     | Score       |
 | ----------- | ----------- |
-| onshift_to_outstanding      | 0.092247       |
-| hour_mean_total_outstanding_orders	   | 0.067612        |
-| est_time_non-prep      | 0.038387       |
-| hour_mean_total_onshift_dashers	   | 0.030156        |
-| store_est_median_total_prep_time      | 0.029575       |
-| hour_busy_outs_avg	   | 0.027338        |
-| created_day_of_week__0	      | 0.025279       |
-| busy_to_outstanding	   | 0.022975        |
-| hour_mean_total_busy_dashers      | 0.019490       |
-| store_est_time_prep_per_item_mean	   | 0.018125        |
+| hour_mean_total_outstanding_orders      | 0.242148       |
+| est_time_non-prep	   | 0.116266        |
+| onshift_to_outstanding      | 0.070525       |
+| hour_busy_outs_avg	   | 0.032786        |
+| hour_mean_total_onshift_dashers      | 0.049111       |
+| market_day_mean_total_outstanding_orders	   | 0.032590        |
+| store_day_of_week_est_time_prep_per_item_mean	      | 0.022351       |
+| busy_to_outstanding	   | 0.020434        |
+| orders_without_dashers      | 0.019857       |
+| created_day_mean_total_outstanding_orders	   | 0.016961        |
 
 #### Step Three: Dimensionality Reduction
 
