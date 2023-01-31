@@ -107,10 +107,14 @@ def addFeatures_relative_abundances(historical_data:pd.DataFrame,train_df=pd.Dat
     assert 'market_id','created_hour_of_day' in train_df.columns; 'Matching market_id and/or created_hour_of_day columns not found in train_df'
     try:
         market_hour_abd = historical_data.groupby(['market_id','created_hour_of_day'])['total_outstanding_orders','total_onshift_dashers','total_busy_dashers'].aggregate(np.mean).add_prefix('market_hour_mean_')
+        market_hour_std_dev = historical_data.groupby(['market_id','created_hour_of_day'])['total_outstanding_orders','total_onshift_dashers','total_busy_dashers'].aggregate(np.std).add_prefix('market_hour_std_dev_')
         hour_abd = historical_data.groupby(['created_hour_of_day'])['total_outstanding_orders','total_onshift_dashers','total_busy_dashers'].aggregate(np.mean).add_prefix('hour_mean_')
+        hour_std_dev = historical_data.groupby(['created_hour_of_day'])['total_outstanding_orders','total_onshift_dashers','total_busy_dashers'].aggregate(np.std).add_prefix('hour_std_dev_')
 
         train_df = pd.merge(left=train_df,right=market_hour_abd,on=['market_id','created_hour_of_day'])
+        train_df = pd.merge(left=train_df,right=market_hour_std_dev,on=['market_id','created_hour_of_day'])
         train_df = pd.merge(left=train_df,right=hour_abd,on=['created_hour_of_day'])
+        train_df = pd.merge(left=train_df,right=hour_std_dev,on=['created_hour_of_day'])
         # market hour abundances
         train_df['market_hour_onshift_outs_avg'] = train_df['market_hour_mean_total_onshift_dashers'] / train_df['market_hour_mean_total_outstanding_orders']
         train_df['market_hour_onshift_to_outstanding_abd'] = train_df['onshift_to_outstanding'] / train_df['market_hour_onshift_outs_avg']
