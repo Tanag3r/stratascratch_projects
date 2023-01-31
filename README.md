@@ -36,24 +36,40 @@ Summary of feature engineering:
 - **Order Preparation Time Statistics:** Two fact tables, one that summarized by store and one that summarized by category, that aggregated the amount of time each order spent in-store into min, max, median, mean and standard deviation values
 - **Relative Abundances:** Two fact tables, one aggregated by hour-of-day and the second by market and hour-of-day, that provide the average values produced by the ratio function for the respective aggregation. The function also divides the record's ratio values by the aggregated value to produce a "relative abundance" score for each record
 - **Dummies:** dummy columns are provisioned for the hour of day, day of the week, store category, market id and order protocol
+- **pred_order_prep_time:** this feature is an estimation of the amount of time an order will spend in the store, and is predicted using xgboost.
 
-Top fifteen features by importance:
+Top fifteen features by importance for the two-step (prep. time pred >>> delivery time prediction) model:
 
 | Feature     | Score       |
 | ----------- | ----------- |
-| est_order_total_prep_time      | 0.348091       |
-| est_time_non-prep	   | 0.209039        |
-| hour_mean_total_onshift_dashers      | 0.115692       |
-| onshift_to_outstanding	   | 0.113821        |
-| estimated_store_to_consumer_driving_duration      |        |
-| store_est_time_prep_per_item_median	   |         |
-| hour_mean_total_onshift_dashers      |        |
-| store_est_time_prep_per_item_mean	   |         |
-| store_est_time_prep_per_item_std      |        |
-| store_est_time_prep_per_item_max	   |         |
-| estimated_order_place_duration	   |         |
-| busy_to_outstanding      |        |
-| hour_mean_total_busy_dashers	   |         |
-| hour_mean_total_outstanding_orders      |        |
-| hour_busy_outs_avg	   |         |
-| order_protocol__1.0      |        |
+| pred_order_prep_time      | 0.139058       |
+| created_hour_of_day__22	   | 0.048176        |
+| est_time_non-prep      | 0.036919       |
+| total_busy_dashers	   | 0.032640        |
+| estimated_order_place_duration      | 0.031526       |
+| clean_store_primary_category__mediterranean	   | 0.030337        |
+| total_onshift_dashers      | 0.023403       |
+| onshift_to_outstanding	   | 0.021803        |
+| clean_store_primary_category__japanese      | 0.017603       |
+| market_id__6.0	   | 0.016424        |
+| clean_store_primary_category__sushi	   | 0.012465        |
+| market_hour_busy_outs_avg      | 0.011942       |
+| created_hour_of_day__20	   | 0.010390       |
+| store_est_time_prep_per_item_mean      | 0.010385       |
+| hour_busy_outs_avg	   | 0.000858        |
+| hour_onshift_outs_avg      | 0.009867       |
+
+For comparison, these are the top ten features for a single model approach:
+
+| Feature     | Score       |
+| ----------- | ----------- |
+| onshift_to_outstanding      | 0.092247       |
+| hour_mean_total_outstanding_orders	   | 0.067612        |
+| est_time_non-prep      | 0.038387       |
+| hour_mean_total_onshift_dashers	   | 0.030156        |
+| store_est_median_total_prep_time      | 0.029575       |
+| hour_busy_outs_avg	   | 0.027338        |
+| created_day_of_week__0	      | 0.025279       |
+| busy_to_outstanding	   | 0.022975        |
+| hour_mean_total_busy_dashers      | 0.019490       |
+| store_est_time_prep_per_item_mean	   | 0.018125        |
