@@ -16,9 +16,13 @@ In addition to the system-derived data there are two values produced by other ML
 - `estimated_order_place_duration`
 
 #### Results
-Using a two-step, depth-limited xgboost model the best 5-fold cross-validated RMSE I have been able to achieve is 869.73865 seconds. Although DoorDash uses RMSE to score this exercise, the MAE and RMSE-to-y_true-standard-deviation ratio provide more context:
-- MAE: 600.7541, or just over ten minutes
-- RMSE-to-std-dev: 0.8048464649644018
+The best model I have built so far uses a two-step ensemble approach:
+- **Two-Step:** the time the order will spend in the store is estimated first, then that estimation is joined to the record being estimated and passed on to a second model that estimates the actual total delivery duration
+- **Ensemble:** a collection of models are trained on x-folds of training data and validated against the same holdout data. During the prediction step, each of the models provides an estimation of actual total delivery duration, and the average of those values is considered y-hat.
+
+Using this two-step, ensemble approach the best RMSE I have been able to produce is 840.6877 with a holdout size of 0.2. Although DoorDash uses RMSE to score this exercise, the MAE and RMSE-to-y_true-standard-deviation ratio provide more context:
+- MAE: 529.7541, or just over ten minutes
+- RMSE-to-std-dev: 0.7705274115903241
 
 To provide a benchmark for performance I found two other notebooks that work through this prompt and dataset:
 - Stratascratch: holdout RMSE: 986.6912510458277, holdout_size: 0.2,
