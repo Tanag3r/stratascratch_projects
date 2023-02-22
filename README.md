@@ -20,7 +20,10 @@ The best model I have built so far uses a two-step ensemble approach:
 - **Two-Step:** the time the order will spend in the store is estimated first, then that estimation is joined to the record being estimated and passed on to a second model that estimates the actual total delivery duration
 - **Ensemble:** a collection of models are trained on x-folds of training data and validated against the same holdout data. During the prediction step, each of the models provides an estimation of actual total delivery duration, and the average of those values is considered y-hat.
 
-Using this two-step, ensemble approach the best RMSE I have been able to produce is 840.6877 with a holdout size of 0.2. Although DoorDash uses RMSE to score this exercise, the MAE and RMSE-to-y_true-standard-deviation ratio provide more context:
+Using this two-step, ensemble approach the best scores I have produced so far are as follows:
+- RMSE against a holdout of 0.2: 840.68771
+- Mean of 5-fold cross-validated RMSE's: 785.233467
+Although DoorDash uses RMSE to score this exercise, the MAE and RMSE-to-y_true-standard-deviation ratio provide more context:
 - MAE: 529.7541, or just over ten minutes
 - RMSE-to-std-dev: 0.7705274115903241
 
@@ -42,7 +45,7 @@ Summary of feature engineering:
 - **Dummies:** dummy columns are provisioned for the hour of day, day of the week, store category, market id and order protocol
 - **pred_order_prep_time:** this feature is an estimation of the amount of time an order will spend in the store, and is predicted using xgboost.
 
-Top fifteen features by importance for the two-step (prep. time pred >>> delivery time prediction) model:
+Top ten features by importance for the two-step (prep. time pred >>> delivery time prediction) model:
 
 | Feature     | Score       |
 | ----------- | ----------- |
@@ -73,6 +76,9 @@ For comparison, these are the top ten features for a single model approach:
 | created_day_mean_total_outstanding_orders	   | 0.016961        |
 
 #### Step Three: Dimensionality Reduction
-
+Please note that this section of the project needs more attention and development. Two popular dimensionality reduction methods were considered for this project:
+- Principle Component Analysis (PCA)
+- Variance Inflation Reduction (VIF)
+Recall that dimensionality reduction has two general benefits: model accuracy and compute performance. The 'reduced' models were outperformed in terms of accuracy by the 'unreduced' model, with PCA narrowly beating VIF. A featureset reduced by PCA also trained the fastest when compared to a VIF-reduced featureset and an 'unreduced' featureset. 
 #### Step Four: Modeling
 
