@@ -23,6 +23,7 @@ The best model I have built so far uses a two-step ensemble approach:
 Using this two-step, ensemble approach the best scores I have produced so far are as follows:
 - RMSE against a holdout of 0.2: 840.68771
 - Mean of 5-fold cross-validated RMSE's: 785.233467
+
 Although DoorDash uses RMSE to score this exercise, the MAE and RMSE-to-y_true-standard-deviation ratio provide more context:
 - MAE: 529.7541, or just over ten minutes
 - RMSE-to-std-dev: 0.7705274115903241
