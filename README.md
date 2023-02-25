@@ -1,6 +1,10 @@
 # stratascratch_projects
 **Ownership:** Prompt and dataset is from stratascratch.com, solution notebook & feature engineering scripts are my own work.
 
+#### Work-in-Progess:
+- Resolving issue [#13](https://github.com/Tanag3r/stratascratch_projects/issues/13), apologies for the mess in the main notebook.
+- Implementing, integrating DuckDB to replace as much of the Python/Pandas data cleaning as possible. I am also considering rebasing some of the feature engineering functions into DuckDB.
+
 #### Prompt
 When a consumer places an order on DoorDash, we show the expected time of delivery. It is very important for DoorDash to get this right, as it has a big impact on consumer experience. In this exercise, you will build a model to predict the estimated time taken for a delivery.
 
@@ -78,8 +82,10 @@ For comparison, these are the top ten features for a single model approach:
 
 #### Step Three: Dimensionality Reduction
 Please note that this section of the project needs more attention and development. Two popular dimensionality reduction methods were considered for this project:
+
 - Principle Component Analysis (PCA)
 - Variance Inflation Reduction (VIF)
+
 Recall that dimensionality reduction has two general benefits: model accuracy and compute performance. The 'reduced' models were outperformed in terms of accuracy by the 'unreduced' model, with PCA narrowly beating VIF. A featureset reduced by PCA also trained the fastest when compared to a VIF-reduced featureset and an 'unreduced' featureset. 
 #### Step Four: Modeling
 
