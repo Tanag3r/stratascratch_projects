@@ -36,9 +36,18 @@ select *,
 	else null end as clean_store_primary_category
 from categories
 where clean_store_primary_category is not null
---where label_count_rank = 1
---and store_primary_category <> 'NA'
---where store_id in (4717,4369,4152,4173,1121,1224)
+;
+--Returns the mode market_id value for each store_id
+with market_labels as (select store_id,market_id,
+DENSE_RANK() over (PARTITION BY store_id order by count(market_id) desc) as market_label_ranks
+from main.historic_data_bronze
+group by 1,2
+order by 1)
+select distinct store_id,market_id from market_labels
+where market_labels.market_label_ranks = 1 and market_labels.market_id <> 'NA'
 ;
 
-select * from main.clean_store_category limit 25;
+--Returns average dasher values grouped by market and time of day
+select
+created_at,total_o from main.historic_data_bronze where total_onshift_dashers = 'NA'
+;
