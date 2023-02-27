@@ -2,7 +2,7 @@
 **Ownership:** Prompt and dataset is from stratascratch.com, solution notebook & feature engineering scripts are my own work.
 
 #### Work-in-Progess:
-- Resolving issue [#13](https://github.com/Tanag3r/stratascratch_projects/issues/13), apologies for the mess in the main notebook.
+- Resolving issue [#13](https://github.com/Tanag3r/stratascratch_projects/issues/13), apologies for the mess in the working branch notebook.
 - Implementing, integrating DuckDB to replace as much of the Python/Pandas data cleaning as possible. I am also considering rebasing some of the feature engineering functions into DuckDB.
 
 #### Prompt
