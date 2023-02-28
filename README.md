@@ -25,8 +25,8 @@ The best model I have built so far uses a two-step ensemble approach:
 - **Ensemble:** a collection of models are trained on x-folds of training data and validated against the same holdout data. During the prediction step, each of the models provides an estimation of actual total delivery duration, and the average of those values is considered y-hat.
 
 Using this two-step, ensemble approach the best scores I have produced so far are as follows:
-- RMSE against a holdout of 0.2: 840.68771
-- Mean of 5-fold cross-validated RMSE's: 785.233467
+- RMSE against a holdout of 0.2: 849.1551127581309
+- Mean of 5-fold cross-validated RMSE's: 686.7846066001122
 
 Although DoorDash uses RMSE to score this exercise, the MAE and RMSE-to-y_true-standard-deviation ratio provide more context:
 - MAE: 529.7541, or just over ten minutes
@@ -84,8 +84,8 @@ For comparison, these are the top ten features for a single model approach:
 Please note that this section of the project needs more attention and development. Two popular dimensionality reduction methods were considered for this project:
 
 - Principle Component Analysis (PCA)
-- Variance Inflation Reduction (VIF)
+- Top Features (took the number of features required to explain 90% of the variance)
 
-Recall that dimensionality reduction has two general benefits: model accuracy and compute performance. The 'reduced' models were outperformed in terms of accuracy by the 'unreduced' model, with PCA narrowly beating VIF. A featureset reduced by PCA also trained the fastest when compared to a VIF-reduced featureset and an 'unreduced' featureset. 
+Recall that dimensionality reduction has two general benefits: model accuracy and compute performance. The 'reduced' models were outperformed in terms of accuracy by the 'unreduced' model, with the 'top features' approach beating out PCA.
 #### Step Four: Modeling
 
